@@ -41,9 +41,10 @@ st.set_page_config(page_title="FP 고객 추천 서비스", layout="wide", initi
 st.markdown(f'''
 <div style="width:100%;background:#fff;border-bottom:2px solid {HANHWA_ORANGE};padding:12px 0 8px 0;position:sticky;top:0;z-index:100;">
   <div style="display:flex;align-items:center;max-width:1100px;margin:0 auto;">
-    <img src="https://www.hanwha.co.kr/static/images/common/logo_hanwha.png" height="36" style="margin-right:14px;">
+    <div style="width:40px;height:40px;background:{HANHWA_ORANGE};border-radius:8px;display:flex;align-items:center;justify-content:center;margin-right:14px;">
+      <span style="color:white;font-weight:bold;font-size:1.2rem;">H</span>
+    </div>
     <span style="font-size:1.35rem;font-weight:700;color:{HANHWA_ORANGE};letter-spacing:1px;">FP 고객 추천 서비스</span>
-    <span style="margin-left:auto;font-size:1rem;color:#888;">Powered by Hanwha Life</span>
   </div>
 </div>
 ''', unsafe_allow_html=True)
@@ -96,7 +97,15 @@ body, .stApp {{ font-family: {HANHWA_FONT}; }}
 </style>
 """, unsafe_allow_html=True)
 
-fp_id = st.text_input("FP ID를 입력하세요", "F001")
+st.markdown("### 📋 FP 담당자님, 고객 추천을 위해 ID를 입력해주세요")
+st.markdown("고객 데이터를 분석하여 가입 유도 및 이탈 방지가 필요한 고객을 추천해드립니다.")
+
+fp_id = st.text_input(
+    "담당자 ID", 
+    "F001",
+    placeholder="예: F001, F002, F003...",
+    help="담당하시는 FP ID를 입력하시면 해당하는 고객 리스트를 분석해드립니다."
+)
 
 if st.button("고객 추천 보기"):
     merged = create_fake_merged(50)
